@@ -34,6 +34,19 @@ export class AuthController {
         return res.json({message: 'Login Success', user: result, token});
 
     }
+
+    async currentUser(req: Request, res: Response) {
+        const {id} = req.currentUser!;
+        // find the currently logged in user by the id
+        const repo = AppDataSource.getRepository(User);
+        const user = await repo.findOneByOrFail({id});
+
+        if(!user){
+            return res.status(404).json({message: 'User not found!'});
+        }
+
+        return res.status(201).json({data: user.toResponse()});
+    }
 }
 
 

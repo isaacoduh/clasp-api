@@ -9,7 +9,7 @@
     "migration:show": "npx typeorm-ts-node-commonjs migration:show -d ./src/database/data-source.ts",
     "migration:create": "node scripts/migration-create.js",
     "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/database/data-source.ts",
-    "migration:revert": "npx typeorm migration:revert"
+    "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d ./src/database/data-source.ts"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,7 @@
     "@types/jsonwebtoken": "^9.0.6",
     "@types/memory-cache": "^0.2.5",
     "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
     "concurrently": "^8.2.2",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",

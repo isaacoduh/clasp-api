@@ -1,4 +1,7 @@
+import * as dotenv from "dotenv";
 import { DataSource } from "typeorm";
+
+dotenv.config();
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -8,8 +11,8 @@ export const AppDataSource = new DataSource({
   password: "root",
   database: "clasp-dev",
   synchronize: false,
-  logging: true,
+  logging: ["query"],
   entities: [],
   subscribers: [],
-  migrations: [],
+  migrations: ["src/database/migrations/*.ts"],
 });

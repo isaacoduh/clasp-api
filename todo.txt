@@ -1,0 +1,6 @@
+[] Setup Project
+[] Authentication Setup
+[] Endpoint: /signup
+[] Endpoint: /login
+[] Endpoint: /getuser [middleware]
+[] Dockerize Application and Test Functionality

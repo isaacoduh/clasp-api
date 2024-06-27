@@ -4,9 +4,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Kyc } from "./KYC";
 
 @Entity("users")
 export class User {
@@ -21,6 +24,10 @@ export class User {
 
   @Column()
   password: string;
+
+  @OneToOne(() => Kyc, (kyc) => kyc.user, { cascade: true })
+  @JoinColumn()
+  kyc: Kyc;
 
   @BeforeInsert()
   async hashPassword() {

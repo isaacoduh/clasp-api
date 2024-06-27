@@ -21,6 +21,17 @@ export enum DocumentType {
   ID_CARD = "id_card",
 }
 
+export enum Gender {
+  MALE = "male",
+  FEMALE = "female",
+}
+
+export enum MaritalStatus {
+  MARRIED = "married",
+  SINGLE = "single",
+  DIVORCED = "divorced",
+}
+
 @Entity("kycs")
 export class Kyc {
   @PrimaryGeneratedColumn("uuid")
@@ -48,9 +59,63 @@ export class Kyc {
   @Column()
   expiryDate: Date;
 
+  @Column()
+  firstname: string;
+
+  @Column()
+  lastname: string;
+
+  @Column({ type: "enum", enum: Gender })
+  gender: string;
+
+  @Column()
+  image: string;
+
+  @Column({ type: "enum", enum: MaritalStatus })
+  marital_status: string;
+
+  @Column()
+  date_of_birth: string;
+
+  @Column()
+  signature: string;
+
+  @Column()
+  country: string;
+
+  @Column()
+  state: string;
+
+  @Column()
+  city: string;
+
+  @Column()
+  phone: string;
+
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  isKycCompleted(): boolean {
+    return (
+      this.status === KycStatus.APPROVED &&
+      this.documentType !== undefined &&
+      this.documentNumber !== undefined &&
+      this.issuedDate !== undefined &&
+      this.expiryDate !== undefined &&
+      this.firstname !== undefined &&
+      this.lastname !== undefined &&
+      this.gender !== undefined &&
+      this.image !== undefined &&
+      this.marital_status !== undefined &&
+      this.date_of_birth !== undefined &&
+      this.signature !== undefined &&
+      this.country !== undefined &&
+      this.state !== undefined &&
+      this.city !== undefined &&
+      this.phone !== undefined
+    );
+  }
 }

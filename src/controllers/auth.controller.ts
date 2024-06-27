@@ -23,10 +23,12 @@ export class AuthController {
     // Assign the KYC record to the user and save the user again if necessary
     user.kyc = newKyc;
     await repo.save(user);
+    const isKycCompleted = newKyc.isKycCompleted();
 
-    return res
-      .status(201)
-      .json({ message: "User Created Successfully", data: user });
+    return res.status(201).json({
+      message: "User Created Successfully",
+      data: { user, isKycCompleted },
+    });
   }
 
   async login(req: Request, res: Response): Promise<Response> {
@@ -43,7 +45,7 @@ export class AuthController {
     let token = sign(
       { userId: user.id },
       process.env.JWT_SECRET || "x!GH#EEOE@",
-      { expiresIn: "1d" }
+      { expiresIn: "3d" }
     );
     const result = user.toResponse();
 

@@ -51,6 +51,52 @@ export class CreateKycTable1719490891193 implements MigrationInterface {
             type: "date",
             isNullable: true,
           },
+          { name: "firstname", type: "varchar", isNullable: true },
+          { name: "lastname", type: "varchar", isNullable: true },
+
+          {
+            name: "gender",
+            type: "enum",
+            enum: ["male", "female"],
+            isNullable: true,
+          },
+          { name: "image", type: "varchar", isNullable: true },
+          {
+            name: "marital_status",
+            type: "enum",
+            enum: ["marrried", "single", "divorced"],
+            isNullable: true,
+          },
+          {
+            name: "date_of_birth",
+            type: "varchar",
+            isNullable: true,
+          },
+          {
+            name: "signature",
+            type: "varchar",
+            isNullable: true,
+          },
+          {
+            name: "country",
+            type: "varchar",
+            isNullable: true,
+          },
+          {
+            name: "state",
+            type: "varchar",
+            isNullable: true,
+          },
+          {
+            name: "city",
+            type: "varchar",
+            isNullable: true,
+          },
+          {
+            name: "phone",
+            type: "varchar",
+            isNullable: true,
+          },
           {
             name: "createdAt",
             type: "timestamp",

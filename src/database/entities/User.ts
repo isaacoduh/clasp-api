@@ -26,7 +26,6 @@ export class User {
   password: string;
 
   @OneToOne(() => Kyc, (kyc) => kyc.user, { cascade: true })
-  @JoinColumn()
   kyc: Kyc;
 
   @BeforeInsert()
@@ -47,6 +46,7 @@ export class User {
     responseUser.email = this.email;
     responseUser.createdAt = this.createdAt;
     responseUser.updatedAt = this.updatedAt;
+    responseUser.kyc = this.kyc;
     return responseUser;
   }
 }

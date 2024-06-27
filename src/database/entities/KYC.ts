@@ -5,6 +5,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  JoinColumn,
 } from "typeorm";
 import { User } from "./User";
 
@@ -29,6 +30,7 @@ export class Kyc {
   userId: string;
 
   @OneToOne(() => User, (user) => user.kyc)
+  @JoinColumn()
   user: User;
 
   @Column({ type: "enum", enum: KycStatus, default: KycStatus.PENDING })

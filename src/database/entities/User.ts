@@ -12,6 +12,7 @@ import {
 } from "typeorm";
 import { Account } from "./Account";
 import { Kyc } from "./KYC";
+import { Transaction } from "./Transaction";
 
 @Entity("users")
 export class User {
@@ -32,6 +33,11 @@ export class User {
 
   @OneToMany(() => Account, (account) => account.user, { cascade: true })
   accounts: Account[];
+
+  @OneToMany(() => Transaction, (transaction) => transaction.user, {
+    cascade: true,
+  })
+  transactions: Transaction[];
   @BeforeInsert()
   async hashPassword() {
     this.password = await hash(this.password, 12);

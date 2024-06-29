@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 import { DataSource } from "typeorm";
 import { Account } from "./entities/Account";
 import { Kyc } from "./entities/KYC";
+import { Transaction } from "./entities/Transaction";
 import { User } from "./entities/User";
 
 dotenv.config();
@@ -15,7 +16,7 @@ export const AppDataSource = new DataSource({
   database: "clasp-dev",
   synchronize: false,
   logging: ["query"],
-  entities: [User, Kyc, Account],
+  entities: [User, Kyc, Account, Transaction],
   subscribers: [],
   migrations: ["src/database/migrations/*.ts"],
 });

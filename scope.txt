@@ -1,0 +1,71 @@
+Project Scope and Feature List
+This project involves creating a payment system backend using Express, TypeScript, and TypeORM. Below is the breakdown of tasks and steps required to implement the features listed in your original project scope.
+
+Project Breakdown
+
+1. Setup Project
+Create a new project directory payment_backend
+Initialize a new Node.js project with npm init -y
+Install required packages: express, typescript, typeorm, pg, bcrypt, jsonwebtoken, express-validator, and class-validator
+Set up TypeScript: tsc --init
+Configure tsconfig.json and package.json scripts
+Set up basic Express server and create necessary directories (src, src/controllers, src/routes, src/entities, src/middlewares, src/config)
+
+2. Database Configuration
+Configure TypeORM: Create src/data-source.ts
+Set up database connection and create User and Kyc entities
+
+3. Authentication
+Implement custom user model with TypeORM (User entity)
+Implement registration, login, and logout routes and controllers
+Use bcrypt for password hashing and jsonwebtoken for JWT token generation
+
+4. User Registration System
+Create User registration form validation
+Implement registration controller and route
+Save user to the database and return JWT token on successful registration
+
+5. User Login System
+Create login form validation
+Implement login controller and route
+Authenticate user and return JWT token on successful login
+
+6. User Logout System
+Implement logout functionality by invalidating JWT token (handled on the client side)
+
+7. Account Model
+Create Account entity
+Link Account to User using a one-to-one relationship
+Set up Account repository
+
+8. KYC Model and Form
+Create Kyc entity with necessary fields and relationships
+Implement KYC form validation and processing
+
+9. KYC Views
+Implement routes and controllers to handle KYC form submission and review
+Ensure the form can update the KYC status and other fields
+
+10. Transfer Funds
+Implement routes and controllers to handle money transfers between users
+Validate and process transfer requests
+
+11. Transaction Views
+Implement routes and controllers to view transaction history
+Filter transactions for both sender and receiver
+
+12. Payment Requests
+Implement routes and controllers to handle payment requests
+Validate and process payment requests
+
+13. Payment Settlements
+Implement routes and controllers to handle payment settlements
+Validate, process, and confirm settlements
+
+14. Credit Card Management
+Create CreditCard entity and link it to User
+Implement routes and controllers to manage credit cards (add, view, fund, withdraw)
+
+15. Alerts and Notifications
+Implement middleware to handle alerts and notifications
+Ensure users receive appropriate feedback for their actions

@@ -4,3 +4,14 @@
 [] Endpoint: /login
 [] Endpoint: /getuser [middleware]
 [] Dockerize Application and Test Functionality
+
+
+Done:
+ - signup
+ - login
+ - currentUser
+
+
+
+House Cleaning
+- validation []

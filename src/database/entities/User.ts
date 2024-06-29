@@ -5,10 +5,12 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Account } from "./Account";
 import { Kyc } from "./KYC";
 
 @Entity("users")
@@ -28,6 +30,8 @@ export class User {
   @OneToOne(() => Kyc, (kyc) => kyc.user, { cascade: true })
   kyc: Kyc;
 
+  @OneToMany(() => Account, (account) => account.user, { cascade: true })
+  accounts: Account[];
   @BeforeInsert()
   async hashPassword() {
     this.password = await hash(this.password, 12);

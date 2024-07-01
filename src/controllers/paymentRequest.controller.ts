@@ -174,10 +174,28 @@ const acceptPaymentRequest = async (
   return res.status(200).json({ message: "Payment Request Processed!" });
 };
 
+const cancelPaymentRequest = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const { transactionId } = req.params;
+  const transactionRepository = AppDataSource.getRepository(Transaction);
+  const paymentRequest = (await transactionRepository.findOne({
+    where: { id: transactionId },
+    relations: ["sender"],
+  })) as Transaction;
+
+  paymentRequest.status = TransactionStatus.FAILED;
+  await transactionRepository.save(paymentRequest);
+
+  return res.status(200).json({ message: "Request Canceled" });
+};
+
 export {
   searchUser,
   createPaymentRequest,
   recievedPaymentRequests,
   sentPaymentRequests,
   acceptPaymentRequest,
+  cancelPaymentRequest,
 };

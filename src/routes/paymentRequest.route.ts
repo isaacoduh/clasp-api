@@ -6,6 +6,7 @@ import {
   recievedPaymentRequests,
   sentPaymentRequests,
   acceptPaymentRequest,
+  cancelPaymentRequest,
 } from "../controllers/paymentRequest.controller";
 
 const router = express.Router();
@@ -14,5 +15,6 @@ router.post("/new", AuthMiddleware.authenticate, createPaymentRequest);
 router.get("/received", AuthMiddleware.authenticate, recievedPaymentRequests);
 router.get("/sent", AuthMiddleware.authenticate, sentPaymentRequests);
 router.put("/:id/accept", AuthMiddleware.authenticate, acceptPaymentRequest);
+router.put("/:id/cancel", AuthMiddleware.authenticate, cancelPaymentRequest);
 
 export default router;

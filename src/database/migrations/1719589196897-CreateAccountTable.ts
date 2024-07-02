@@ -57,6 +57,12 @@ export class CreateAccountTable1719589196897 implements MigrationInterface {
             default: "'in-active'",
           },
           {
+            name: "currency",
+            type: "enum",
+            enum: ["ngn", "gbp", "usd"],
+            default: `'gbp'`,
+          },
+          {
             name: "date",
             type: "timestamp",
             default: "now()",

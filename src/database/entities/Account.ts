@@ -11,6 +11,12 @@ import {
 import { Transaction } from "./Transaction";
 import { User } from "./User";
 
+export enum CurrencyType {
+  NAIRA = "ngn",
+  POUNDS = "gbp",
+  DOLLAR = "usd",
+}
+
 @Entity("accounts")
 export class Account {
   @PrimaryGeneratedColumn("uuid")
@@ -40,6 +46,9 @@ export class Account {
 
   @Column({ length: 100, default: "in-active" })
   account_status: string;
+
+  @Column({ type: "enum", enum: CurrencyType, default: CurrencyType.POUNDS })
+  currency: CurrencyType;
 
   @CreateDateColumn()
   date: Date;

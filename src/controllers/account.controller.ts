@@ -50,6 +50,7 @@ const createAccount = async (req: Request, res: Response) => {
     account.account_id = generateAccountId();
     account.pin_number = generatePinNumber();
     account.red_code = generateRedCode();
+    account.currency = currency;
     account.account_status = "active";
     account.kyc_submitted = true;
 

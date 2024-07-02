@@ -35,7 +35,7 @@ export class Notification {
   })
   notification_type: NotificationType;
 
-  @Column({ type: "integer", default: 0 })
+  @Column({ type: "decimal", default: 0.0 })
   amount: number;
 
   @Column({ type: "boolean", default: false })

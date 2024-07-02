@@ -3,6 +3,7 @@ import { DataSource } from "typeorm";
 import { Account } from "./entities/Account";
 import { CreditCard } from "./entities/CreditCard";
 import { Kyc } from "./entities/KYC";
+import { Notification } from "./entities/Notification";
 import { Transaction } from "./entities/Transaction";
 import { User } from "./entities/User";
 
@@ -17,7 +18,7 @@ export const AppDataSource = new DataSource({
   database: "clasp-dev",
   synchronize: false,
   logging: ["query"],
-  entities: [User, Kyc, Account, Transaction, CreditCard],
+  entities: [User, Kyc, Account, Transaction, CreditCard, Notification],
   subscribers: [],
   migrations: ["src/database/migrations/*.ts"],
 });

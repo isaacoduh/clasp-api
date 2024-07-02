@@ -39,8 +39,10 @@ export class CreateNotificationTable1719921865461
           },
           {
             name: "amount",
-            type: "integer",
-            default: 0,
+            type: "decimal",
+            precision: 12,
+            scale: 2,
+            default: "0.0",
           },
           {
             name: "is_read",
@@ -79,6 +81,6 @@ export class CreateNotificationTable1719921865461
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("notification");
+    await queryRunner.dropTable("notifications");
   }
 }

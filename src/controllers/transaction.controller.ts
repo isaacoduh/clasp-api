@@ -7,6 +7,11 @@ import {
   TransactionStatus,
   TransactionType,
 } from "../database/entities/Transaction";
+import {
+  Notification,
+  NotificationType,
+} from "../database/entities/Notification";
+import { v4 as uuidv4 } from "uuid";
 
 const transferFunds = async (
   req: Request,
@@ -25,6 +30,7 @@ const transferFunds = async (
   const accountRepository = AppDataSource.getRepository(Account);
   const userRepository = AppDataSource.getRepository(User);
   const transactionRepository = AppDataSource.getRepository(Transaction);
+  const notificationRepository = AppDataSource.getRepository(Notification);
 
   const sender = await userRepository.findOneBy({ id: senderId });
   if (!sender) {
@@ -72,10 +78,24 @@ const transferFunds = async (
   transaction.transactionType = TransactionType.TRANSFER;
   transaction.user = sender;
 
+  const senderNotification = new Notification();
+  senderNotification.amount = amount;
+  senderNotification.notification_type = NotificationType.TRANSFER;
+  senderNotification.nid = uuidv4().slice(0, 20);
+  senderNotification.user = sender;
+
+  const receiverNotification = new Notification();
+  receiverNotification.amount = amount;
+  receiverNotification.user = receiver;
+  receiverNotification.nid = uuidv4().slice(0, 20);
+  receiverNotification.notification_type = NotificationType.CREDIT_ALERT;
+
   await AppDataSource.transaction(async (t) => {
     await t.save(senderAccount);
     await t.save(receiverAccount);
     await t.save(transaction);
+    await t.save(senderNotification);
+    await t.save(receiverNotification);
   });
   return res.status(200).json({ message: "Transfer completed", transaction });
 };

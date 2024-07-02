@@ -4,14 +4,15 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "nodemon --watch src --exec 'ts-node' -r tsconfig-paths/register src/index.ts",
+    "dev": "nodemon --watch src --exec 'ts-node' -r tsconfig-paths/register src/index.ts && stripe listen --forward-to localhost:7600/api/v1/order/handle-webhook",
     "typeorm": "typeorm-ts-node-commonjs -d src/database/data-source.ts",
     "migration:show": "npx typeorm-ts-node-commonjs migration:show -d ./src/database/data-source.ts",
     "migration:create": "node scripts/migration-create.js",
     "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/database/data-source.ts",
     "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d ./src/database/data-source.ts",
     "migration:generate": "npx typeorm-ts-node-commonjs migration:generate -d ./src/database/data-source.ts -n",
-    "db:reset": "ts-node scripts/reset-db.ts"
+    "db:reset": "ts-node scripts/reset-db.ts",
+    "stripe": "stripe listen --forward-to localhost:7600/api/v1/order/handle-webhook"
   },
   "keywords": [],
   "author": "",
@@ -35,6 +36,7 @@
     "memory-cache": "^0.2.0",
     "pg": "^8.12.0",
     "reflect-metadata": "^0.2.2",
+    "stripe": "^16.1.0",
     "typeorm": "^0.3.20",
     "uuid": "^10.0.0",
     "yargs": "^17.7.2"

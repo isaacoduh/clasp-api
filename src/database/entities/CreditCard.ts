@@ -51,7 +51,7 @@ export class CreditCard {
   card_status: boolean;
 
   @CreateDateColumn()
-  createdA: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;

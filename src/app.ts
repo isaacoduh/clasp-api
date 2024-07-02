@@ -5,6 +5,7 @@ import kycRoute from "./routes/kyc.route";
 import adminRoute from "./routes/admin.route";
 import transactionRoute from "./routes/transaction.route";
 import paymentRequestRoute from "./routes/paymentRequest.route";
+import creditCardRoute from "./routes/creditCard.route";
 import bodyParser from "body-parser";
 import "express-async-errors";
 
@@ -17,6 +18,7 @@ app.use("/api/v1/accounts", accountRoute);
 app.use("/api/v1/kyc", kycRoute);
 app.use("/api/v1/transactions", transactionRoute);
 app.use("/api/v1/payment_requests", paymentRequestRoute);
+app.use("/api/v1/credit_cards", creditCardRoute);
 app.use("/api/v1/admin", adminRoute);
 
 app.use("*", (req: Request, res: Response) => {

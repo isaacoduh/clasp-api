@@ -11,9 +11,6 @@ import notificationRoute from "./routes/notification.route";
 import bodyParser from "body-parser";
 import "express-async-errors";
 import { handleWebhook } from "./controllers/payment.controller";
-const stripe = require("stripe")(
-  "sk_test_51PY6hmL0mfmIj3HsbICsI85uBR28wrWRopTe9NGY7D38gmqMLt24x7lE8Ap4Z3oDy6cEGPfpkxdghARiT1g3sPx600wzDygAz7"
-);
 
 const app: Express = express();
 app.use(

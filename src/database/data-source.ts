@@ -21,8 +21,5 @@ export const AppDataSource = new DataSource({
   entities: [User, Kyc, Account, Transaction, CreditCard, Notification],
   subscribers: [],
   migrations: ["src/database/migrations/*.ts"],
-  ssl:
-    process.env.NODE_ENV === "production"
-      ? { rejectUnauthorized: false }
-      : undefined,
+  ssl: { rejectUnauthorized: true },
 });

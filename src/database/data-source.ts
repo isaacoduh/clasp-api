@@ -8,6 +8,7 @@ import { Transaction } from "./entities/Transaction";
 import { User } from "./entities/User";
 
 dotenv.config();
+const isProduction = process.env.NODE_ENV === "production";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -21,5 +22,5 @@ export const AppDataSource = new DataSource({
   entities: [User, Kyc, Account, Transaction, CreditCard, Notification],
   subscribers: [],
   migrations: ["src/database/migrations/*.ts"],
-  ssl: { rejectUnauthorized: true },
+  ssl: isProduction ? { rejectUnauthorized: true } : false,
 });

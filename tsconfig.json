@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES2020", // Or any other modern ES target
+    "target": "ES2016", // Or any other modern ES target
     "module": "commonjs",
     "outDir": "./build",
-    "rootDir": "./src",
+    // "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,

@@ -9,6 +9,8 @@ import stripeRoutes from "./routes/stripe.route";
 import creditCardRoute from "./routes/creditCard.route";
 import notificationRoute from "./routes/notification.route";
 import bodyParser from "body-parser";
+import helmet from "helmet";
+import cors from "cors";
 import "express-async-errors";
 import { handleWebhook } from "./controllers/payment.controller";
 
@@ -19,7 +21,10 @@ app.use(
   handleWebhook
 );
 app.use(express.json({ limit: "50mb" }));
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/accounts", accountRoute);

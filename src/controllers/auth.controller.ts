@@ -79,7 +79,7 @@ export class AuthController {
       return res.status(401).json({ message: "Invalid Credentials!" });
     }
     let token = sign({ userId: user.id }, process.env.JWT_SECRET as string, {
-      expiresIn: "24h",
+      expiresIn: "15s",
     });
     const result = user.toResponse();
 

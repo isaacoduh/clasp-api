@@ -4,8 +4,8 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
+    "start": "NODE_OPTIONS='--max-old-space-size=8192' npm run build && node ./dist/index.js",
     "build": "tsc",
-    "start": "NODE_OPTIONS='--max-old-space-size=8192' tsc && node ./dist/index.js",
     "dev": "nodemon --watch src --exec 'ts-node' -r tsconfig-paths/register src/index.ts && stripe listen --forward-to localhost:7600/api/v1/order/handle-webhook",
     "typeorm": "typeorm-ts-node-commonjs -d src/database/data-source.ts",
     "migration:show": "npx typeorm-ts-node-commonjs migration:show -d ./src/database/data-source.ts",

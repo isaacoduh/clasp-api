@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf dist node_modules && npm cache clean --force && npm install",
-    "build": "NODE_OPTIONS=--max_old_space_size=4096 tsc && tsc-alias -p tsconfig.json",
-    "start": "npm run clean && npm run build && node --max-old-space-size=4096 dist/index.js",
+    "start": "tsc && node ./dist/src/index.js",
     "dev": "nodemon --watch src --exec 'ts-node' -r tsconfig-paths/register src/index.ts && stripe listen --forward-to localhost:7600/api/v1/order/handle-webhook",
     "typeorm": "typeorm-ts-node-commonjs -d src/database/data-source.ts",
     "migration:show": "npx typeorm-ts-node-commonjs migration:show -d ./src/database/data-source.ts",

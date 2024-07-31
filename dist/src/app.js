@@ -1,0 +1,41 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const auth_route_1 = __importDefault(require("./routes/auth.route"));
+const account_route_1 = __importDefault(require("./routes/account.route"));
+const kyc_route_1 = __importDefault(require("./routes/kyc.route"));
+const admin_route_1 = __importDefault(require("./routes/admin.route"));
+const transaction_route_1 = __importDefault(require("./routes/transaction.route"));
+const paymentRequest_route_1 = __importDefault(require("./routes/paymentRequest.route"));
+const stripe_route_1 = __importDefault(require("./routes/stripe.route"));
+const creditCard_route_1 = __importDefault(require("./routes/creditCard.route"));
+const notification_route_1 = __importDefault(require("./routes/notification.route"));
+const body_parser_1 = __importDefault(require("body-parser"));
+const helmet_1 = __importDefault(require("helmet"));
+const cors_1 = __importDefault(require("cors"));
+require("express-async-errors");
+const payment_controller_1 = require("./controllers/payment.controller");
+const app = (0, express_1.default)();
+app.use("/api/v1/payments/handle-stripe-webhook", body_parser_1.default.raw({ type: "application/json" }), payment_controller_1.handleWebhook);
+app.use(express_1.default.json({ limit: "50mb" }));
+app.use((0, helmet_1.default)());
+app.use(helmet_1.default.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(body_parser_1.default.urlencoded({ extended: true }));
+app.use((0, cors_1.default)());
+app.use("/api/v1/auth", auth_route_1.default);
+app.use("/api/v1/accounts", account_route_1.default);
+app.use("/api/v1/kyc", kyc_route_1.default);
+app.use("/api/v1/transactions", transaction_route_1.default);
+app.use("/api/v1/payment_requests", paymentRequest_route_1.default);
+app.use("/api/v1/credit_cards", creditCard_route_1.default);
+app.use("/api/v1/notifications", notification_route_1.default);
+app.use("/api/v1/payments", stripe_route_1.default);
+app.use("/api/v1/admin", admin_route_1.default);
+app.use("*", (req, res) => {
+    return res.status(404).json({ success: false, message: "Route Not Found!" });
+});
+exports.default = app;
+//# sourceMappingURL=app.js.map

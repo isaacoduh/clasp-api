@@ -1,11 +1,15 @@
 {
   "name": "clasp-api",
   "version": "1.0.0",
-  "main": "index.js",
-  "type": "commonjs",
+  "main": ".dist/index.js",
   "scripts": {
-    "start": "NODE_OPTIONS='--max-old-space-size=8192' tsc && node ./dist/index.js",
+    "rah": " npm run build && npm run start",
+    "clean": "rm -rf dist node_modules && npm cache clean --force && npm install",
+    "startssss": "node --max-old-space-size=8192 ./dist/index.js",
+    "starts": "NODE_OPTIONS='--max-old-space-size=8192' tsc && node ./dist/index.js",
+    "start": "ts-node src/index.ts",
     "build": "tsc --project ./",
+    "typeorm:cli": "ts-node ./node_modules/typeorm/cli -f ./src/database/data-source.ts",
     "tsc": "tsc",
     "dev": "nodemon --watch src --exec 'ts-node' -r tsconfig-paths/register src/index.ts && stripe listen --forward-to localhost:7600/api/v1/order/handle-webhook",
     "typeorm": "typeorm-ts-node-commonjs -d src/database/data-source.ts",
@@ -47,7 +51,8 @@
     "stripe": "^16.1.0",
     "typeorm": "^0.3.20",
     "uuid": "^10.0.0",
-    "yargs": "^17.7.2"
+    "yargs": "^17.7.2",
+    "ts-node-dev": "^1.0.0-pre.49"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

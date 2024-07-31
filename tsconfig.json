@@ -5,12 +5,12 @@
     // "target": "es6",
     "moduleResolution": "node",
     "sourceMap": false,
-    "outDir": "dist",
+    "outDir": "./dist",
     "experimentalDecorators": true,
     "target": "es2015",
     "lib": ["DOM", "ES2015"],
     "baseUrl": ".",
-    "rootDir": ".",
+    "rootDir": "src",
     "strict": true,
     "noImplicitAny": true,
     "noUnusedLocals": false,
@@ -20,6 +20,8 @@
     "allowSyntheticDefaultImports": true,
     "pretty": true,
     "resolveJsonModule": true
-  }
+  },
+  "include": ["src/**/*"], // Ensure this includes all your source files
+  "exclude": ["node_modules"]
   // "lib": ["es2015"]
 }

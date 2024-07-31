@@ -2,7 +2,7 @@
   "name": "clasp-api",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "build": "tsc",
     "start": "NODE_OPTIONS='--max-old-space-size=8192' tsc && node ./dist/index.js",

@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
-    "start": "node ./build/index.js",
+    "start": "node build/index.js",
     "dev": "nodemon --watch src --exec 'ts-node' -r tsconfig-paths/register src/index.ts && stripe listen --forward-to localhost:7600/api/v1/order/handle-webhook",
     "typeorm": "typeorm-ts-node-commonjs -d src/database/data-source.ts",
     "migration:show": "npx typeorm-ts-node-commonjs migration:show -d ./src/database/data-source.ts",

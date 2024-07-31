@@ -19,7 +19,8 @@
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
     "pretty": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "strictPropertyInitialization": false
   },
   "include": ["src/**/*"], // Ensure this includes all your source files
   "exclude": ["node_modules"]

@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import authRoute from "./routes/auth.route";
+import dashboardRoute from "./routes/dashboard.route";
 import accountRoute from "./routes/account.route";
 import kycRoute from "./routes/kyc.route";
 import adminRoute from "./routes/admin.route";
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/dashboard", dashboardRoute);
 app.use("/api/v1/accounts", accountRoute);
 app.use("/api/v1/kyc", kycRoute);
 app.use("/api/v1/transactions", transactionRoute);

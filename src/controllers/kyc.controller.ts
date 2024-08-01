@@ -37,7 +37,7 @@ const updateKyc = async (req: Request, res: Response): Promise<Response> => {
     return res.status(404).json({ message: "User not found!" });
   }
 
-  let kyc = await kycRepository.findOneBy({ user });
+  let kyc = await kycRepository.findOne({ where: { userId: userId } });
   if (!kyc) {
     kyc = new Kyc();
     kyc.user = user;
@@ -66,4 +66,26 @@ const updateKyc = async (req: Request, res: Response): Promise<Response> => {
   return res.status(200).json({ message: "KYC updated successfully!", kyc });
 };
 
-export { updateKyc };
+const getKyc = async (req: Request, res: Response) => {
+  const userId = req.currentUser?.id;
+
+  const userRepository = AppDataSource.getRepository(User);
+  const kycRepository = AppDataSource.getRepository(Kyc);
+
+  const user = await userRepository.findOneBy({ id: userId });
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found!" });
+  }
+
+  let kyc = await kycRepository.findOne({ where: { userId: userId } });
+  if (!kyc) {
+    return res
+      .status(404)
+      .json({ message: "Kyc information missing not found!" });
+  }
+
+  return res.status(200).json({ success: true, kyc });
+};
+
+export { updateKyc, getKyc };
